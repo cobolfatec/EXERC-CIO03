@@ -35,7 +35,7 @@
        77  AS-VALOR-METRO         PIC 9(5)V99.
        77  AS-VAL-VENDA           PIC 9(7)V99.
        77  AS-COMISSAO            PIC 9(6)V99.
-       77  WS-HORA-ATUAL          PIC 99.99.9999.
+       77  AS-HORA-ATUAL          PIC 99.99.9999.
 
       *-----> DADOS DE SAIDA VIA SYSOUT
 
@@ -96,7 +96,10 @@
            MOVE  2315,000   TO   AS-VAL-METRO
            COMPUTE AS-VAL-VENDA = (AS-FRENTE*AS-FUNDO)*AS-VAL-METRO
            IF AS-VAL-VENDA > 1500000,00
-            AS-COMISSAO = AS-VALVENDA
+            WS-COMISSAO = AS-VALVENDA*o.04
+            WS-MESSAGEM  TO "CASA DE ALTO PADRÃO"
+          ELSE
+          END-IF.
            DISPLAY WS-REG-SYSOUT
            ADD   1               TO   WS-CTEXIB
            MOVE 'S'              TO   WS-FIM
